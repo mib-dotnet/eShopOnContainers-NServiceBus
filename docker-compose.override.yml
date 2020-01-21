@@ -171,6 +171,7 @@ services:
       - "5109:80"
 
   sql.data:
+    container_name: sql.data
     environment:
       - MSSQL_SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y
