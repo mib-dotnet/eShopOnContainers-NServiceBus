@@ -209,9 +209,9 @@
 
         private string GetRabbitConnectionString()
         {
-            var host = Configuration["EventBusConnection"];
-            var user = Configuration["EventBusUserName"];
-            var password = Configuration["EventBusPassword"];
+            var host = Configuration["RabbitMq:EventBusHost"];
+            var user = Configuration["RabbitMq:EventBusUserName"];
+            var password = Configuration["RabbitMq:EventBusPassword"];
 
             if (string.IsNullOrEmpty(user))
                 return $"host={host}";
