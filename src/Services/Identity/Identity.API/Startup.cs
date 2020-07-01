@@ -21,6 +21,7 @@ using Microsoft.Extensions.HealthChecks;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -54,7 +55,7 @@ namespace eShopOnContainers.Identity
 
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+             options.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -80,7 +81,7 @@ namespace eShopOnContainers.Identity
                 {
                     minutes = minutesParsed;
                 }
-                checks.AddSqlCheck("Identity_Db", Configuration.GetConnectionString("DefaultConnection"), TimeSpan.FromMinutes(minutes));
+                checks.AddSqlCheck("Identity_Db", Configuration["ConnectionString"], TimeSpan.FromMinutes(minutes));
             });
 
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -88,7 +89,7 @@ namespace eShopOnContainers.Identity
             services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
             services.AddTransient<IRedirectService, RedirectService>();
 
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = Configuration["ConnectionString"];
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             // Adds IdentityServer
@@ -105,6 +106,9 @@ namespace eShopOnContainers.Identity
 
             var container = new ContainerBuilder();
             container.Populate(services);
+
+            //EnsureSqlDatabaseExists();
+
             return new AutofacServiceProvider(container.Build());
         }
 
@@ -161,6 +165,26 @@ namespace eShopOnContainers.Identity
             var hasher = new PasswordHasher<ApplicationUser>();
             new ApplicationContextSeed(hasher).SeedAsync(app, env, loggerFactory).Wait();
         }
+
+        void EnsureSqlDatabaseExists()
+        {
+            var builder = new SqlConnectionStringBuilder(Configuration["ConnectionString"]);
+            var identityServiceDb = builder.InitialCatalog;
+
+            builder.InitialCatalog = "master";
+            var masterConnectionString = builder.ConnectionString;
+
+            using (var connection = new SqlConnection(masterConnectionString))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText =
+                    $"IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '{identityServiceDb}')" +
+                    $"  CREATE DATABASE [{identityServiceDb}]";
+                command.ExecuteNonQuery();
+            }
+        }
+
 
         private async Task InitializeGrantStoreAndConfiguration(IApplicationBuilder app)
         {
