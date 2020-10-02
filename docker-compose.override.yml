@@ -37,6 +37,10 @@ services:
       - UseCustomizationData=True
       - AzureServiceBusEnabled=False
       - AzureStorageEnabled=False
+#      - RabbitMq=${ESHOP_AZURE_SERVICE_BUS: -EventBusUserName: guest -EventBusPassword: guest -EventBusHost: rabbitmq}
+      - RabbitMq__EventBusUserName=guest
+      - RabbitMq__EventBusPassword=guest
+      - RabbitMq__EventBusHost=rabbitmq
     ports:
       - "5101:80"
 
