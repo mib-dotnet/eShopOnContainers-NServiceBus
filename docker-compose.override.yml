@@ -184,5 +184,12 @@ services:
       - "5433:1433"
 
   nosql.data:
+    container_name: nosql.data    
     ports:
       - "27017:27017"
+
+  basket.data:
+    container_name: basket.data
+
+  rabbitmq:
+    container_name: rabbitmq
