@@ -9,6 +9,9 @@ version: '2.1'
 services:
       
   basket.api:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -24,10 +27,14 @@ services:
       - "5103:80"
 
   catalog.api:
+    build:
+      args:
+        source: obj/Docker/empty
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
-      - ConnectionString=${ESHOP_AZURE_CATALOG_DB:-Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word}
+      - IdentityUrl=http://localhost:5105
+      - ConnectionString=${ESHOP_AZURE_CATALOG_DB:-Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word;Connect Timeout=45}
       - PicBaseUrl=${ESHOP_AZURE_STORAGE_CATALOG_URL:-http://localhost:5101/api/v1/catalog/items/[0]/pic/}   #Local: You need to open your local dev-machine firewall at range 5100-5110.  
       - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
@@ -43,14 +50,22 @@ services:
       - RabbitMq__EventBusHost=rabbitmq
     ports:
       - "5101:80"
+    # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_catalogapi.sh && tail -f /dev/null'"
+    entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_catalogapi.sh'"
+    volumes:
+      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Catalog\Catalog.API:/app:rw
+      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Catalog\Catalog.API:/src:rw
 
   identity.api:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - SpaClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5104
       - XamarinCallback=http://${ESHOP_PROD_EXTERNAL_DNS_NAME_OR_IP}:5105/xamarincallback      #localhost do not work for UWP login, so we have to use "external" IP always
-      - ConnectionStrings__DefaultConnection=${ESHOP_AZURE_IDENTITY_DB:-Server=sql.data;Database=Microsoft.eShopOnContainers.Service.IdentityDb;User Id=sa;Password=Pass@word} 
+      - ConnectionStrings__DefaultConnection=${ESHOP_AZURE_IDENTITY_DB:-Server=sql.data;Database=Microsoft.eShopOnContainers.Service.IdentityDb;User Id=sa;Password=Pass@word;Connect Timeout=45} 
       - MvcClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5100              #Local: You need to open your local dev-machine firewall at range 5100-5110. 
       - LocationApiClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5109
       - MarketingApiClient=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5110
@@ -59,8 +74,13 @@ services:
       - UseCustomizationData=True    
     ports:
       - "5105:80"
+    # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_identityapi.sh && tail -f /dev/null'"
+    entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_identityapi.sh'"
 
   ordering.api:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -78,6 +98,9 @@ services:
       - "5102:80"
 
   marketing.api:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -99,6 +122,9 @@ services:
       - "5110:80"
 
   webspa:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -117,12 +143,15 @@ services:
       - "5104:80"
 
   webmvc:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - CatalogUrl=http://catalog.api
       - OrderingUrl=http://ordering.api
-      - IdentityUrl=http://identity.api              #Local: You need to open your local dev-machine firewall at range 5100-5105.  at range 5100-5105. 
+      - IdentityUrl=http://localhost:5105              #Local: You need to open your local dev-machine firewall at range 5100-5105.  at range 5100-5105. 
       - BasketUrl=http://basket.api
       - MarketingUrl=http://marketing.api
       #- MarketingUrl=http://marketing.api  #Local:  Use 10.0.75.1 in a "Docker for Windows" environment, if using "localhost" from browser. 
@@ -132,6 +161,9 @@ services:
       - "5100:80"
 
   webstatus:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -147,6 +179,9 @@ services:
       - "5107:80"
 
   payment.api:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -159,6 +194,9 @@ services:
       - "5108:80"
 
   locations.api:
+    build:
+      args:
+        source: empty/
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80

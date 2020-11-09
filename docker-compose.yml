@@ -18,6 +18,7 @@ services:
     build:
       context: ./src/Services/Catalog/Catalog.API
       dockerfile: Dockerfile    
+    restart: on-failure
     depends_on:
       - sql.data
       - rabbitmq
@@ -27,6 +28,7 @@ services:
     build:
       context: ./src/Services/Identity/Identity.API
       dockerfile: Dockerfile    
+    restart: on-failure
     depends_on:
       - sql.data
 
@@ -73,6 +75,7 @@ services:
       - identity.api
       - basket.api
       - marketing.api
+    # entrypoint: ["dockerize.sh","exec_webmvc.sh"]
 
   webstatus:
     image: eshop/webstatus
@@ -101,6 +104,11 @@ services:
 
   sql.data:
     image: microsoft/mssql-server-linux:2017-latest
+#    healthcheck:
+#        test: ["CMD", "ping", "-f", "http://sql.data"]
+#        interval: 30s
+#        timeout: 20s
+#        retries: 5
 
   nosql.data:
     image: mongo
@@ -116,3 +124,8 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+#    healthcheck:
+#        test: ["CMD", "ping", "-f", "http://rabbitmq"]
+#        interval: 30s
+#        timeout: 10s
+#        retries: 5

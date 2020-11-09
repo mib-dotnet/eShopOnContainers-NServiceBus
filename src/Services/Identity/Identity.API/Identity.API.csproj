@@ -73,6 +73,9 @@
     <None Update="Dockerfile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="exec_identityapi.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Setup\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -82,5 +85,9 @@
     <Folder Include="Extensions\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(SolutionDir)\images\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot; &quot;obj\Docker\empty\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot;" />
+  </Target>
 
 </Project>
