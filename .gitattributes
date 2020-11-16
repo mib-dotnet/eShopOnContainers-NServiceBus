@@ -68,7 +68,7 @@
 =======
 # Auto detect text files and perform CRLF normalization
 * text=auto eol=crlf
-
+*.sh text eol=lf
 # Standard to msysgit
 *.doc	diff=astextplain
 *.DOC	diff=astextplain
