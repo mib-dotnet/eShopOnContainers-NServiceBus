@@ -1,21 +1,24 @@
 version: '3.6'
 services:
   catalog_test:
-    build: ./Catalog.API
+    build: 
+      context: ./Catalog.API
+      args:
+        source: obj/Docker/empty
     image: "catalog_test:latest"
     container_name: catalog_test
     # command: sh -c "cd /usr/local/bin && ./sayhelloworld.sh"
     volumes:
-        - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Catalog\Catalog.API:/app:rw
-        - D:\MyGit\eShopOnContainers-NServicebus\images:/app/images:rw
-        - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Catalog\Catalog.API:/src:rw
-        - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+        - .\Catalog.API:/app:rw
+        - ..\..\..\..\images:/app/images:rw
+        - .\Catalog.API:/src:rw
+        - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
         - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
         - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
         - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-    networks: 
-      - dockercompose4019110096250588909_default
+#     networks: 
+#       - dockercompose4019110096250588909_default
 
-networks: 
-  dockercompose4019110096250588909_default:
-    external: true
+# networks: 
+#   dockercompose4019110096250588909_default:
+#     external: true
