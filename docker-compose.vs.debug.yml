@@ -15,10 +15,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Basket\Basket.API:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Basket\Basket.API:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Services\Basket\Basket.API:/app
+      - .\src\Services\Basket\Basket.API:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -44,10 +44,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Catalog\Catalog.API:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Catalog\Catalog.API:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Services\Catalog\Catalog.API:/app
+      - .\src\Services\Catalog\Catalog.API:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -76,10 +76,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Identity\Identity.API:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Identity\Identity.API:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Services\Identity\Identity.API:/app
+      - .\src\Services\Identity\Identity.API:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -108,10 +108,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Location\Locations.API:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Location\Locations.API:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Services\Location\Locations.API:/app
+      - .\src\Services\Location\Locations.API:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -138,10 +138,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Marketing\Marketing.API:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Marketing\Marketing.API:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Services\Marketing\Marketing.API:/app
+      - .\src\Services\Marketing\Marketing.API:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -168,10 +168,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Ordering\Ordering.API:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Ordering\Ordering.API:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Services\Ordering\Ordering.API:/app
+      - .\src\Services\Ordering\Ordering.API:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -198,10 +198,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Payment\Payment.API:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Services\Payment\Payment.API:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Services\Payment\Payment.API:/app
+      - .\src\Services\Payment\Payment.API:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -228,10 +228,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Web\WebMVC:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Web\WebMVC:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Web\WebMVC:/app
+      - .\src\Web\WebMVC:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -258,10 +258,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Web\WebSPA:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Web\WebSPA:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Web\WebSPA:/app
+      - .\src\Web\WebSPA:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -288,10 +288,10 @@ services:
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Web\WebStatus:/app
-      - D:\MyGit\eShopOnContainers-NServicebus\src\Web\WebStatus:/src
-      - C:\Users\Murali\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\Murali\.nuget\packages\:/root/.nuget/packages:ro
+      - .\src\Web\WebStatus:/app
+      - .\src\Web\WebStatus:/src
+      - C:\Users\Murali.Balasubramani\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
