@@ -11,7 +11,6 @@ using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.eShopOnContainers.BuildingBlocks;
 using Microsoft.eShopOnContainers.Services.Catalog.API.Infrastructure;
@@ -25,7 +24,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-
 namespace eShopOnContainers.Identity
 {
     public class Startup
@@ -44,6 +42,7 @@ namespace eShopOnContainers.Identity
             }
 
             builder.AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -96,12 +95,18 @@ namespace eShopOnContainers.Identity
             services.AddIdentityServer(x => x.IssuerUri = "null")
                 .AddSigningCredential(Certificate.Get())
                 .AddAspNetIdentity<ApplicationUser>()
-                .AddConfigurationStore(builder =>
-                    builder.UseSqlServer(connectionString, options =>
-                        options.MigrationsAssembly(migrationsAssembly)))
-                .AddOperationalStore(builder =>
-                    builder.UseSqlServer(connectionString, options =>
-                        options.MigrationsAssembly(migrationsAssembly)))
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                      builder.UseSqlServer(connectionString,
+                                        db => db.MigrationsAssembly(migrationsAssembly));
+                })
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                      builder.UseSqlServer(connectionString,
+                                        db => db.MigrationsAssembly(migrationsAssembly));
+                })
                 .Services.AddTransient<IProfileService, ProfileService>();
 
             var container = new ContainerBuilder();

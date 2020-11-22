@@ -3,12 +3,9 @@
 
 
 using IdentityModel;
-using IdentityServer4.Quickstart.UI.Models;
 using IdentityServer4.Services;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
@@ -21,7 +18,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Identity.API.Models.AccountViewModels;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication;
+using AuthenticationProperties = Microsoft.AspNetCore.Authentication.AuthenticationProperties;
+using HttpAuthenticationProperties = Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace IdentityServer4.Quickstart.UI.Controllers
 {
@@ -194,7 +193,7 @@ namespace IdentityServer4.Quickstart.UI.Controllers
                 try
                 {
                     // hack: try/catch to handle social providers that throw
-                    await HttpContext.Authentication.SignOutAsync(idp, new AuthenticationProperties { RedirectUri = url });
+                    await HttpContext.Authentication.SignOutAsync(idp, new HttpAuthenticationProperties { RedirectUri = url });
                 }
                 catch (Exception ex)
                 {
@@ -203,7 +202,7 @@ namespace IdentityServer4.Quickstart.UI.Controllers
             }
 
             // delete authentication cookie
-            await HttpContext.Authentication.SignOutAsync();
+            await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             // set this so UI rendering sees an anonymous user
             HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity());
@@ -217,7 +216,7 @@ namespace IdentityServer4.Quickstart.UI.Controllers
         public async Task<IActionResult> DeviceLogOut(string redirectUrl)
         {
             // delete authentication cookie
-            await HttpContext.Authentication.SignOutAsync();
+            await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             // set this so UI rendering sees an anonymous user
             HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity());
