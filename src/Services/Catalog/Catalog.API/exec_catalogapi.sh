@@ -5,7 +5,7 @@
 echo --------------------------
 # echo Nice to meet you $name!.
 # echo You have done a great job.
-echo 💥 Congratulations $name 💥
+echo 💥 Catalog.API 💥
 echo --------------------------
 ls --all
 echo --------------------------
