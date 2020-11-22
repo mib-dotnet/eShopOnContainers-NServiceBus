@@ -51,7 +51,7 @@ services:
     ports:
       - "5101:80"
     # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_catalogapi.sh && tail -f /dev/null'"
-    entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_catalogapi.sh'"
+    # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_catalogapi.sh'"
     volumes:
       - ./:/app:rw
       - ./:/src:rw
@@ -75,7 +75,7 @@ services:
     ports:
       - "5105:80"
     # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_identityapi.sh && tail -f /dev/null'"
-    entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_identityapi.sh'"
+    # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_identityapi.sh'"
 
   ordering.api:
     build:
