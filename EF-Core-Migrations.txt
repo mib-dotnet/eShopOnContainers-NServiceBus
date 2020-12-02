@@ -1,0 +1,12 @@
+Run the following EF core migration commands from VS Package Manager Console:
+Add-Migration <Migration name> -Context <DbContextClassName>
+Add-Migration Init -Context ConfigurationDbContext -OutputDir "Migrations/ConfigurationDb"
+Add-Migration Init -Context PersistedGrantDbContext
+
+
+
+To Remove migrations & clear the DBs:
+Remove-Migration [-Force] -Context <DbContextClassName>
+Remove-Migration -Force -Context ConfigurationDbContext
+
+etc
