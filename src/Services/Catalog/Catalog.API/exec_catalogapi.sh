@@ -9,6 +9,7 @@ echo 💥 Catalog.API 💥
 echo --------------------------
 ls --all
 echo --------------------------
+sleep 50
 # Release Mode
 # dockerize -wait tcp://sql.data:1433 -timeout 300s -wait-retry-interval 30s && dotnet Catalog.API.dll
 # Debug Mode
