@@ -152,7 +152,7 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - CatalogUrl=http://catalog.api
       - OrderingUrl=http://ordering.api
-      - IdentityUrl=http://localhost:5105              #Local: You need to open your local dev-machine firewall at range 5100-5105.  at range 5100-5105. 
+      - IdentityUrl=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105     #Local: You need to open your local dev-machine firewall at range 5100-5105.  at range 5100-5105. 
       - BasketUrl=http://basket.api
       - MarketingUrl=http://marketing.api
       #- MarketingUrl=http://marketing.api  #Local:  Use 10.0.75.1 in a "Docker for Windows" environment, if using "localhost" from browser. 
