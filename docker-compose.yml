@@ -76,6 +76,13 @@ services:
       - basket.api
       - marketing.api
     # entrypoint: ["dockerize.sh","exec_webmvc.sh"]
+    restart: on-failure
+    #TODO: This kind to delay app/project startup not working properly, anyhow 'healthcheck' deprecated from docker-compose v3.x onwards. This can be removed later.
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://catalog.api"]
+        interval: 30s
+        timeout: 40s
+        retries: 5
 
   webstatus:
     image: eshop/webstatus
