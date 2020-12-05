@@ -1,3 +1,37 @@
+Fix for Invalid column name/Missing column exception, after updating Identity Server 4 version in previous committ-2dff6b03:
+
+ERROR:
+------
+System.AggregateException
+  HResult=0x80131500
+  Message=One or more errors occurred. (An error occurred while updating the entries. See the inner exception for details.)
+  Source=System.Private.CoreLib
+  StackTrace:
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at eShopOnContainers.Identity.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) in C:\Users\murali.balasubramani\source\MyGit\eShopOnContainers-NServiceBus\src\Services\Identity\Identity.API\Startup.cs:line 167
+
+  This exception was originally thrown at this call stack:
+    [External Code]
+
+Inner Exception 1:
+DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+
+Inner Exception 2:
+SqlException: Invalid column name 'BackChannelLogoutSessionRequired'.
+Invalid column name 'BackChannelLogoutUri'.
+Invalid column name 'ClientClaimsPrefix'.
+Invalid column name 'ConsentLifetime'.
+Invalid column name 'Description'.
+Invalid column name 'FrontChannelLogoutSessionRequired'.
+Invalid column name 'FrontChannelLogoutUri'.
+Invalid column name 'PairWiseSubjectSalt'.
+
+
+FIX:
+------
+Create ContextFactory classes & run these migrations as mentioned in previous committ-c2e40a35:
+
 Run the following EF core migration commands from VS Package Manager Console:
 Add-Migration <Migration name> -Context <DbContextClassName>
 Add-Migration Init -Context ConfigurationDbContext -OutputDir "Migrations/ConfigurationDb"
