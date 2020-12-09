@@ -33,4 +33,14 @@
     <ContentWithTargetPath Include="$(OutDir)/**/*.sql" TargetPath="%(RecursiveDir)%(Filename)%(Extension)" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="exec_paymentapi.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(SolutionDir)\images\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot; &quot;obj\Docker\empty\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot;" />
+  </Target>
+
 </Project>
