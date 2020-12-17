@@ -1,0 +1,24 @@
+version: '3.6'
+services:
+  identity_test:
+    build: 
+      context: ./Identity.API
+      args:
+        source: obj/Docker/empty
+    image: "identity_test:latest"
+    container_name: identity_test
+    # command: sh -c "cd /usr/local/bin && ./sayhelloworld.sh"
+    volumes:
+        - .\Identity.API:/app:rw
+        - ..\..\..\..\images:/app/images:rw
+        - .\Identity.API:/src:rw
+        - C:\Users\Murali.Balasubramani\.nuget\packages\:/root/.nuget/packages:ro
+        - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+        - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+        - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+    networks: 
+      - dockercompose12234726197041303319_default
+
+networks: 
+  dockercompose12234726197041303319_default:
+    external: true
