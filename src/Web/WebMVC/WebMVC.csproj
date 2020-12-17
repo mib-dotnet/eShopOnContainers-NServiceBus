@@ -74,8 +74,9 @@
     <None Include="ViewModels\CampaignItem.cs" />
   </ItemGroup>
 
-   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    	<Exec Command="copy &quot;$(SolutionDir)\images\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot; &quot;obj\Docker\empty\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot;" />
-   </Target>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="copy &quot;$(SolutionDir)\images\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot; &quot;obj\Docker\empty\dockerize-alpine-linux-amd64-v0.6.1.tar.gz&quot;" />
+		<Exec Command="copy &quot;$(SolutionDir)\bash-scripts\await-container-dependencies.sh&quot; &quot;bin\Debug\netcoreapp2.0\await-container-dependencies.sh&quot;" />
+	</Target>
 
 </Project>
