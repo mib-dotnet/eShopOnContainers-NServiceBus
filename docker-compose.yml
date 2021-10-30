@@ -110,7 +110,7 @@ services:
       - sql.data
 
   sql.data:
-    image: microsoft/mssql-server-linux:2017-latest
+    image: mcr.microsoft.com/mssql/server:2017-latest
 #    healthcheck:
 #        test: ["CMD", "ping", "-f", "http://sql.data"]
 #        interval: 30s
