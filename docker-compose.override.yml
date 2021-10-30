@@ -53,8 +53,8 @@ services:
     # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_catalogapi.sh && tail -f /dev/null'"
     # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_catalogapi.sh'"
     volumes:
-      - ./:/app:rw
-      - ./:/src:rw
+      - .\src\Services\Catalog\Catalog.API:/app:rw
+      - .\src\Services\Catalog\Catalog.API:/src:rw
 
   identity.api:
     build:
