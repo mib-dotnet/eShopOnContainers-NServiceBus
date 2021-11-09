@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   ci-build:
-    image: microsoft/aspnetcore-build:2.0
+    image: mcr.microsoft.com/dotnet/aspnet:2.1
     volumes:
       - .:/src
       - ./cli-linux:/cli-linux
