@@ -212,11 +212,12 @@
             var host = Configuration["RabbitMq:EventBusHost"];
             var user = Configuration["RabbitMq:EventBusUserName"];
             var password = Configuration["RabbitMq:EventBusPassword"];
+            var port = Configuration["RabbitMq:EventBusHostPort"];
 
             if (string.IsNullOrEmpty(user))
                 return $"host={host}";
 
-            return $"host={host};username={user};password={password};";
+            return string.IsNullOrEmpty(port)? $"host={host};username={user};password={password};": $"host={host};port={port};username={user};password={password};";
         }
 
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
