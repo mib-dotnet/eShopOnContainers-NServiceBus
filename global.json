@@ -1,7 +1,0 @@
-{
-    "sdk": {
-      "version": "2.2.207",
-      //Flag to get the max installed dotnet SDK version, if specified version not found
-      "rollForward": "latestMajor"
-    }
-}
