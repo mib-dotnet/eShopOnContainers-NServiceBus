@@ -25,6 +25,8 @@ services:
       - AzureServiceBusEnabled=False
     ports:
       - "5103:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   catalog.api:
     build:
@@ -77,6 +79,8 @@ services:
       - "5105:80"
     # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_identityapi.sh && tail -f /dev/null'"
     # entrypoint: "sh -c 'cd bin/Debug/netcoreapp2.0 && exec ./exec_identityapi.sh'"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   ordering.api:
     build:
@@ -97,6 +101,8 @@ services:
       - CheckUpdateTime=30000
     ports:
       - "5102:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   marketing.api:
     build:
@@ -121,6 +127,8 @@ services:
       - AzureStorageEnabled=False
     ports:
       - "5110:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   webspa:
     build:
@@ -142,6 +150,8 @@ services:
       - UseCustomizationData=True
     ports:
       - "5104:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   webmvc:
     build:
@@ -160,6 +170,8 @@ services:
       - UseCustomizationData=True
     ports:
       - "5100:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   webstatus:
     build:
@@ -212,6 +224,8 @@ services:
       - AzureServiceBusEnabled=False
     ports:
       - "5109:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   sql.data:
     container_name: sql.data
